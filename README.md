@@ -1,73 +1,27 @@
-# React + TypeScript + Vite
+**Élève Ingénieur en 4ème année (GTR)** à l'**ENSA Safi**.  
+Spécialité : **Génie des Télécommunications et Réseaux**.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Expertise focalisée sur l'**Architecture Cloud**, la **Cybersécurité** et l'**Automatisation des Infrastructures**.
 
-Currently, two official plugins are available:
+##  Cloud & Infrastructure Architect
+- **Multi-Cloud Integration :** Déploiement et orchestration de services managés sur **AWS** et **Azure**.
+- **Infrastructure as Code (IaC) :** Provisionnement automatisé via **Terraform** (VPC, Subnets, Instances, Security Groups).
+- **Virtualisation Avancée :** Gestion d'environnements serveur complexes (Proxmox VE, VMware ESXi).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+##  Cybersecurity & Network Monitoring
+- **SOC Analyst Operations :** Implémentation et configuration de **Wazuh SIEM** pour le monitoring de sécurité (HIDS/NIDS).
+- **Traffic Analysis :** Simulation et détection d'attaques DDoS et Brute Force (Hydra, Scapy).
+- **Systems Hardening :** Sécurisation de serveurs Ubuntu et RHEL.
 
-## React Compiler
+##  Telecoms & Optical Networks
+- **Optical Simulation :** Modélisation de réseaux **FTTH/GPON** via OptiSystem.
+- **Network Monitoring :** Analyse de traces Ph-OTDR pour la détection d'anomalies.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+##  Stack Technique du Portfolio
+- **Frontend :** React 19 + TypeScript (Approche Typage Strict).
+- **Architecture :** Design modulaire orienté performance (Vite + Vercel).
+- **CI/CD Pipeline :** Déploiement automatisé via GitHub.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+##  Projets Majeurs
+- **[SOC Architecture]** : Mise en place d'un lab de sécurité avec monitoring en temps réel.
+- **[IoT Traffic Simulation]** : Modélisation de flux IoT sur Azure/AWS IoT Hub.
