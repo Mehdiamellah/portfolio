@@ -15,21 +15,23 @@ const PROJECTS: Project[] = [
     stack: ['Terraform', 'AWS', 'Proxmox VE', 'K3s', 'Tailscale'],
     description:
       'End-of-studies project: a scanning platform (ClamAV, YARA, Google Safe Browsing, PhishTank). Designed and compared two infrastructure approaches — AWS (VPC, RDS, S3, SQS, EC2 + K3s, Terraform IaC) and Proxmox VE + Tailscale + K3s, the one deployed and running in production.',
-    // TODO: add repo/demo link
+    note: 'Report available on request',
   },
   {
     title: 'Kativa — Cosmetics E-commerce Deployment',
     stack: ['React', 'Node.js', 'PostgreSQL', 'Docker', 'AWS EC2', 'Nginx'],
     description:
       'Deployed a React/Vite + Node.js/Express/Prisma + PostgreSQL stack to AWS EC2, containerized with Docker across separate frontend, backend, and Nginx reverse-proxy services.',
-    // TODO: add repo/demo link
+    link: 'http://34.231.137.194/',
+    linkLabel: 'Live site',
   },
   {
     title: 'EthicalData — Coaching Platform Deployment',
     stack: ['NestJS', 'Next.js', 'Docker', 'Oracle Cloud'],
     description:
       'Deployed a NestJS + Next.js monorepo to an Oracle Cloud Ubuntu VM; diagnosed and fixed a broken Docker build pipeline.',
-    // TODO: add repo/demo link
+    link: 'https://ethicaldatasecurity.ma/',
+    linkLabel: 'Live site',
   },
   {
     title: 'Cloud Infrastructure with Terraform',
