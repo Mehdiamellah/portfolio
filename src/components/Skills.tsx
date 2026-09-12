@@ -1,15 +1,30 @@
 import { motion } from 'framer-motion'
 
+interface SkillItem {
+  label: string
+  url?: string
+}
+
 interface SkillGroup {
   category: string
-  items: string[]
+  items: (string | SkillItem)[]
 }
 
 const SKILLS: SkillGroup[] = [
-  { category: 'Cloud & Infra', items: ['Terraform', 'AWS', 'Azure', 'Flask'] },
-  { category: 'Security', items: ['Wazuh', 'SIEM', 'Network Monitoring'] },
-  { category: 'Languages', items: ['Python', 'Bash'] },
-  { category: 'Networking', items: ['FTTH', 'OTDR', 'TCP/IP', 'OptiSystem'] },
+  { category: 'Cloud & Infra', items: ['AWS (EC2, S3, IAM, VPC, RDS, SQS)', 'Oracle Cloud', 'Terraform', 'Azure'] },
+  { category: 'Virtualization & Containers', items: ['Proxmox VE', 'Docker', 'Docker Compose', 'Kubernetes (K3s, Minikube)', 'Tailscale'] },
+  { category: 'Security', items: ['Wazuh', 'SIEM', 'Network Monitoring', 'ClamAV / YARA'] },
+  { category: 'Languages & Scripting', items: ['Python', 'Bash', 'C', 'SQL'] },
+  { category: 'Networking', items: ['FTTH', 'OTDR', 'TCP/IP', 'OptiSystem', 'Cisco routing & switching'] },
+  {
+    category: 'Certifications',
+    items: [
+      {
+        label: 'Cloud & Cybersécurité — YaneCode Academy (40h)',
+        url: 'https://drive.google.com/drive/folders/1Yc1CJ3FjawMyTA_Tjgt9E_g4Epq1i_Gd',
+      },
+    ],
+  },
 ]
 
 export function Skills() {
@@ -61,11 +76,26 @@ export function Skills() {
                   {group.category}
                 </span>
                 <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
-                  {group.items.map((item) => (
-                    <li key={item} style={{ fontFamily: "'Geist', sans-serif", fontSize: '15px', color: '#ededed', lineHeight: 1.9 }}>
-                      {item}
-                    </li>
-                  ))}
+                  {group.items.map((item) => {
+                    const label = typeof item === 'string' ? item : item.label
+                    const url = typeof item === 'string' ? undefined : item.url
+                    return (
+                      <li key={label} style={{ fontFamily: "'Geist', sans-serif", fontSize: '15px', color: '#ededed', lineHeight: 1.9 }}>
+                        {url ? (
+                          <a
+                            href={url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ color: '#ededed', textDecoration: 'underline', textUnderlineOffset: '3px' }}
+                          >
+                            {label}
+                          </a>
+                        ) : (
+                          label
+                        )}
+                      </li>
+                    )
+                  })}
                 </ul>
               </motion.div>
             ))}
