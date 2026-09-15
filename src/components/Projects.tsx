@@ -38,7 +38,8 @@ const PROJECTS: Project[] = [
     stack: ['Wazuh', 'SIEM', 'Kali Linux', 'Hydra'],
     description:
       'Built SOC labs simulating and detecting attacks with Wazuh: SSH brute-force (Hydra from Kali against a monitored agent) and ransomware behavior on both Windows and Ubuntu victims, using File Integrity Monitoring and analyzing the triggered detection rules.',
-    note: 'Report available on request',
+    link: 'https://www.linkedin.com/feed/update/urn:li:activity:7437666442247909377/',
+    linkLabel: 'LinkedIn post',
   },
   {
     title: 'Multi-Site Network Infrastructure (Packet Tracer)',
