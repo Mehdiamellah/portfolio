@@ -11,10 +11,40 @@ interface Project {
 
 const PROJECTS: Project[] = [
   {
+    title: 'MediChain — Medical Blockchain Verification App',
+    stack: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Docker', 'CI/CD'],
+    description:
+      'Designed and managed a fullstack app (code generated with AI assistance) that verifies medical-document integrity via SHA-256 hashing and RSA signatures, keeping sensitive data off-chain. Dockerized backend, GitHub Actions CI/CD, deployed on Vercel + Render.',
+    link: 'https://medichain-pi.vercel.app',
+    linkLabel: 'Live site',
+  },
+  {
     title: 'Scrutis — File & URL Scanning SaaS',
     stack: ['Terraform', 'AWS', 'Proxmox VE', 'K3s', 'Tailscale'],
     description:
       'End-of-studies project: a scanning platform (ClamAV, YARA, Google Safe Browsing, PhishTank). Designed and compared two infrastructure approaches — AWS (VPC, RDS, S3, SQS, EC2 + K3s, Terraform IaC) and Proxmox VE + Tailscale + K3s, the one deployed and running in production.',
+    note: 'Report available on request',
+  },
+  {
+    title: 'SQLI — Dockerized Internship Platform (DevOps pipeline)',
+    stack: ['Docker', 'Docker Compose', 'Docker Hub', 'PHP', 'MySQL'],
+    description:
+      'Built and containerized a PHP/MySQL internship-application platform end-to-end: local dev, Dockerfile + Docker Compose orchestration (app, DB, phpMyAdmin), image published to Docker Hub, deployed to a Kali Linux VM.',
+    link: 'https://hub.docker.com/r/idhem07/sqli-app',
+    linkLabel: 'Docker Hub',
+  },
+  {
+    title: 'Wazuh SOC Labs — Detection & Monitoring',
+    stack: ['Wazuh', 'SIEM', 'Kali Linux', 'Hydra'],
+    description:
+      'Built SOC labs simulating and detecting attacks with Wazuh: SSH brute-force (Hydra from Kali against a monitored agent) and ransomware behavior on both Windows and Ubuntu victims, using File Integrity Monitoring and analyzing the triggered detection rules.',
+    note: 'Report available on request',
+  },
+  {
+    title: 'Multi-Site Network Infrastructure (Packet Tracer)',
+    stack: ['Cisco IOS', 'OSPF', 'VLSM', 'DHCP/DNS', 'NAT/ACL'],
+    description:
+      '5-site enterprise network (HQ + 2 agencies + cloud datacenter + new agency) fully simulated in Packet Tracer: VLSM addressing, VLAN segmentation, OSPF dynamic routing, centralized DHCP, DNS, NAT/PAT, SSH administration, and Zero Trust ACLs between departments.',
     note: 'Report available on request',
   },
   {
@@ -48,14 +78,6 @@ const PROJECTS: Project[] = [
       'Built a platform that analyzes network traffic data and classifies attack types using a trained ML model. Frontend built with Streamlit.',
     link: 'https://github.com/Mehdiamellah/Cybershield',
     linkLabel: 'View on GitHub',
-  },
-  {
-    title: 'SOC Lab with Wazuh',
-    stack: ['Wazuh', 'Linux VMs'],
-    description:
-      'Set up a Security Operations Center environment to monitor and visualize security events across virtual machines.',
-    link: 'https://www.linkedin.com/feed/update/urn:li:activity:7437666442247909377/',
-    linkLabel: 'LinkedIn post',
   },
   {
     title: 'FTTH Network Infrastructure',
