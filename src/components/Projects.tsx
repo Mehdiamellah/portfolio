@@ -30,8 +30,8 @@ const PROJECTS: Project[] = [
     stack: ['Docker', 'Docker Compose', 'Docker Hub', 'PHP', 'MySQL'],
     description:
       'Built and containerized a PHP/MySQL internship-application platform end-to-end: local dev, Dockerfile + Docker Compose orchestration (app, DB, phpMyAdmin), image published to Docker Hub, deployed to a Kali Linux VM.',
-    link: 'https://hub.docker.com/r/idhem07/sqli-app',
-    linkLabel: 'Docker Hub',
+    link: 'https://github.com/Mehdiamellah/Internhub',
+    linkLabel: 'View on GitHub',
   },
   {
     title: 'Wazuh SOC Labs — Detection & Monitoring',
