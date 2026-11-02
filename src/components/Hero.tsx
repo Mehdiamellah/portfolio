@@ -30,11 +30,10 @@ export function Hero() {
           letterSpacing: '0.2em',
           textTransform: 'uppercase',
           color: 'var(--ink-muted)',
-          marginBottom: '54px',
+          marginBottom: '44px',
         }}
         aria-hidden="true"
       >
-        <span>{t(HERO.masthead.left)}</span>
         <span className="hidden md:block">{t(HERO.masthead.middle)}</span>
         <span>{t(HERO.masthead.right)}</span>
       </motion.div>

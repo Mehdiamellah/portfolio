@@ -37,7 +37,7 @@ export function About() {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'baseline',
-          marginBottom: '48px',
+          marginBottom: '26px',
         }}
       >
         <SectionLabel>{fr ? ABOUT.label.fr : ABOUT.label.en}</SectionLabel>
@@ -54,7 +54,7 @@ export function About() {
           style={{
             fontSize: 'clamp(34px, 4.6vw, 58px)',
             lineHeight: 1.14,
-            margin: '0 0 44px 0',
+            margin: '0 0 28px 0',
             fontWeight: 400,
           }}
         >

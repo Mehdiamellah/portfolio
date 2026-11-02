@@ -26,7 +26,7 @@ export function Experience() {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'baseline',
-          marginBottom: '38px',
+          marginBottom: '24px',
         }}
       >
         <SectionLabel>{fr ? EXPERIENCE.label.fr : EXPERIENCE.label.en}</SectionLabel>
@@ -41,7 +41,7 @@ export function Experience() {
         style={{
           fontSize: 'clamp(34px, 4.6vw, 58px)',
           lineHeight: 1.14,
-          margin: '0 0 56px 0',
+          margin: '0 0 36px 0',
           fontWeight: 400,
         }}
       >

@@ -32,7 +32,7 @@ export function Contact() {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'baseline',
-          marginBottom: '48px',
+          marginBottom: '28px',
         }}
       >
         <SectionLabel>{fr ? CONTACT.label.fr : CONTACT.label.en}</SectionLabel>
@@ -49,7 +49,7 @@ export function Contact() {
             style={{
               fontSize: 'clamp(44px, 7vw, 94px)',
               lineHeight: 1.02,
-              margin: '0 0 32px 0',
+              margin: '0 0 24px 0',
               fontWeight: 400,
             }}
           >
@@ -77,7 +77,7 @@ export function Contact() {
       </div>
 
       {/* the channels, set like an index plate */}
-      <div className="col-span-12 md:col-span-10 md:col-start-2" style={{ marginTop: '52px' }}>
+      <div className="col-span-12 md:col-span-10 md:col-start-2" style={{ marginTop: '36px' }}>
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

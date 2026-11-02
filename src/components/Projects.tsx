@@ -121,7 +121,7 @@ export function Projects() {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'baseline',
-          marginBottom: '38px',
+          marginBottom: '24px',
         }}
       >
         <SectionLabel>{fr ? PROJECTS.label.fr : PROJECTS.label.en}</SectionLabel>
@@ -136,7 +136,7 @@ export function Projects() {
         style={{
           fontSize: 'clamp(34px, 4.6vw, 58px)',
           lineHeight: 1.14,
-          margin: '0 0 64px 0',
+          margin: '0 0 40px 0',
           fontWeight: 400,
         }}
       >

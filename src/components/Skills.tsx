@@ -29,7 +29,7 @@ export function Skills() {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'baseline',
-          marginBottom: '38px',
+          marginBottom: '24px',
         }}
       >
         <SectionLabel>{fr ? SKILLS.label.fr : SKILLS.label.en}</SectionLabel>
@@ -69,7 +69,7 @@ export function Skills() {
           letterSpacing: '0.14em',
           textTransform: 'uppercase',
           color: 'var(--ink-muted)',
-          marginBottom: '52px',
+          marginBottom: '32px',
         }}
       >
         <span>{fr ? SKILLS.legend.confident.fr : SKILLS.legend.confident.en}</span>
