@@ -82,7 +82,6 @@ export function Hero() {
             right: 0,
             top: 8,
             width: 'clamp(180px, 22vw, 285px)',
-            transform: 'rotate(1.6deg)',
             zIndex: 2,
           }}
         >
@@ -211,7 +210,6 @@ export function Hero() {
               border: '1.5px solid var(--accent)',
               color: 'var(--accent)',
               padding: '10px 18px',
-              transform: 'rotate(-2deg)',
               fontFamily: 'var(--mono)',
               fontSize: '10px',
               letterSpacing: '0.24em',
