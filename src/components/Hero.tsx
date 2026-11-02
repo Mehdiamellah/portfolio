@@ -1,68 +1,229 @@
 import { motion } from 'framer-motion'
+import { useLang } from '../i18n'
+import { HERO } from '../content'
+
+const ease = [0.22, 1, 0.36, 1] as const
 
 export function Hero() {
+  const { lang } = useLang()
+  const t = (b: { fr: string; en: string }) => (lang === 'fr' ? b.fr : b.en)
+
   return (
     <section
       id="hero"
-      style={{ paddingTop: '140px', paddingBottom: '120px' }}
+      style={{ paddingTop: '170px', paddingBottom: '90px' }}
       className="max-w-screen-xl mx-auto px-8"
     >
-      <div className="grid grid-cols-12 gap-x-8 items-start">
-        <div className="col-span-12 md:col-span-7">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, ease: 'easeOut' }}
-          >
-            <span style={{ fontFamily: "'Geist Mono', monospace", fontSize: '12px', color: '#4ade80', letterSpacing: '0.1em', textTransform: 'uppercase', display: 'block', marginBottom: '32px' }}>
-              Network &amp; Cloud Engineering Student
-            </span>
-          </motion.div>
+      {/* masthead row — metadata, like a title page */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, ease, delay: 0.1 }}
+        className="rule"
+        style={{
+          borderTop: '1px solid var(--hairline-strong)',
+          paddingTop: 14,
+          display: 'flex',
+          justifyContent: 'space-between',
+          fontFamily: 'var(--mono)',
+          fontSize: '10px',
+          letterSpacing: '0.2em',
+          textTransform: 'uppercase',
+          color: 'var(--ink-muted)',
+          marginBottom: '54px',
+        }}
+        aria-hidden="true"
+      >
+        <span>{t(HERO.masthead.left)}</span>
+        <span className="hidden md:block">{t(HERO.masthead.middle)}</span>
+        <span>{t(HERO.masthead.right)}</span>
+      </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, ease: 'easeOut', delay: 0.07 }}
-            style={{ fontFamily: "'Geist', sans-serif", fontSize: 'clamp(48px, 7vw, 80px)', fontWeight: 600, color: '#ededed', lineHeight: 1.05, letterSpacing: '-0.03em', marginBottom: '24px' }}
-          >
-            Amellah<br />Elmahdi
-          </motion.h1>
+      {/* the name, enormous, set in serif like a magazine cover */}
+      <div style={{ position: 'relative' }}>
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease, delay: 0.2 }}
+          style={{
+            fontSize: 'clamp(64px, 12vw, 168px)',
+            lineHeight: 0.94,
+            letterSpacing: '-0.01em',
+            margin: 0,
+            fontWeight: 400,
+          }}
+        >
+          Amellah
+        </motion.h1>
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease, delay: 0.32 }}
+          className="serif-italic"
+          style={{
+            fontSize: 'clamp(64px, 12vw, 168px)',
+            lineHeight: 0.94,
+            letterSpacing: '0em',
+            margin: 0,
+            fontWeight: 400,
+            color: 'var(--accent)',
+          }}
+        >
+          Elmahdi
+        </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, ease: 'easeOut', delay: 0.14 }}
-            style={{ fontFamily: "'Geist', sans-serif", fontSize: '16px', color: '#6b7280', lineHeight: 1.6, marginBottom: '48px', maxWidth: '480px' }}
+        {/* photo — pressed into the page like an editorial portrait */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease, delay: 0.5 }}
+          className="hidden md:block"
+          style={{
+            position: 'absolute',
+            right: 0,
+            top: 8,
+            width: 'clamp(180px, 22vw, 285px)',
+            transform: 'rotate(1.6deg)',
+            zIndex: 2,
+          }}
+        >
+          <div
+            className="drift"
+            style={{
+              backgroundColor: 'var(--matte)',
+              border: '1px solid var(--hairline)',
+              padding: '10px 10px 12px',
+              boxShadow: 'var(--shadow)',
+            }}
           >
-            4th year at ENSA Safi — building toward Cloud Infrastructure and Cybersecurity.
-          </motion.p>
-
-          <motion.blockquote
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, ease: 'easeOut', delay: 0.21 }}
-            style={{ fontFamily: "'Geist Mono', monospace", fontSize: '14px', color: '#4ade80', borderLeft: '2px solid #4ade80', paddingLeft: '20px', margin: 0, fontStyle: 'normal' }}
-          >
-            "Networks are the foundation. Cloud is where they live today."
-          </motion.blockquote>
-        </div>
-
-        <div className="hidden md:flex md:col-span-4 md:col-start-9 justify-end items-start">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, ease: 'easeOut', delay: 0.28 }}
-            style={{ width: '100%', maxWidth: '280px', aspectRatio: '3 / 4', borderRadius: 0, overflow: 'hidden', position: 'relative' }}
-          >
-            <img
-              src="/protfolioimg.png"
-              alt="Amellah Elmahdi"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block', borderRadius: 0, filter: 'brightness(0.9) contrast(1.05)' }}
-            />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #0f0f0f 0%, transparent 40%)', pointerEvents: 'none' }} />
-          </motion.div>
-        </div>
+            <div style={{ position: 'relative' }}>
+              <img
+                src="/protfolioimg.png"
+                alt="Portrait de Amellah Elmahdi"
+                width={285}
+                height={380}
+                style={{
+                  width: '100%',
+                  aspectRatio: '3 / 4',
+                  objectFit: 'cover',
+                  objectPosition: 'center top',
+                  display: 'block',
+                  filter: 'var(--photo-filter)',
+                }}
+              />
+              {/* voile sombre en dégradé — retombée bas + côté gauche, effet fondu d'impression */}
+              <div
+                aria-hidden="true"
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background:
+                    'linear-gradient(to top, rgba(25,23,19,0.55) 0%, rgba(25,23,19,0.18) 45%, rgba(25,23,19,0) 72%), linear-gradient(105deg, rgba(25,23,19,0.30) 0%, rgba(25,23,19,0) 50%)',
+                  pointerEvents: 'none',
+                }}
+              />
+            </div>
+            <div
+              style={{
+                fontFamily: 'var(--mono)',
+                fontSize: '9.5px',
+                letterSpacing: '0.16em',
+                textTransform: 'uppercase',
+                color: 'var(--ink-muted)',
+                marginTop: 10,
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+              <span>{t(HERO.credit)}</span>
+              <span>{t(HERO.creditRight)}</span>
+            </div>
+          </div>
+        </motion.div>
       </div>
+
+      {/* sub-headline + italic dek, magazine style */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease, delay: 0.44 }}
+        className="grid grid-cols-12 gap-x-8"
+        style={{ marginTop: 'min(4vw, 48px)' }}
+      >
+        <div className="hidden md:block md:col-span-2">
+          <span className="plate">{t(HERO.eyebrow)}</span>
+        </div>
+
+        <div className="col-span-12 md:col-span-7" style={{ marginTop: 10 }}>
+          <p
+            style={{
+              fontSize: 'clamp(19px, 2.2vw, 26px)',
+              lineHeight: 1.5,
+              color: 'var(--ink)',
+              margin: 0,
+              maxWidth: '560px',
+              fontWeight: 400,
+            }}
+          >
+            <em className="serif-italic">{lang === 'fr' ? 'réseaux et télécommunications' : 'telecommunications engineering'}</em> —{' '}
+            {lang === 'fr' ? '4ᵉ année à l’ENSA de Safi. Je construis l’infrastructure vers où les réseaux vont' : '4th year at ENSA Safi. Building the infrastructure toward where networks live today'}:{' '}
+            <em className="serif-italic">{lang === 'fr' ? 'le cloud et la sécurité' : 'cloud and security'}</em>.
+          </p>
+
+          <p
+            style={{
+              fontFamily: 'var(--mono)',
+              fontSize: '12px',
+              letterSpacing: '0.06em',
+              color: 'var(--ink-muted)',
+              marginTop: '26px',
+              lineHeight: 1.9,
+            }}
+            aria-hidden="true"
+          >
+            {HERO.motto}
+          </p>
+
+          {/* discreet links */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 28, marginTop: '34px' }}>
+            <a href="#projects" className="plate plate-ink draw-line">
+              {t(HERO.ctaPrimary)}
+            </a>
+            <a href="#contact" className="plate draw-line">
+              {t(HERO.ctaGhost)}
+            </a>
+            {/* CV — le fichier doit s'appeler /public/cv-amellah-elmahdi.pdf */}
+            <a
+              href="/cv-amellah-elmahdi.pdf"
+              download="CV-Amellah-Elmahdi.pdf"
+              className="plate draw-line"
+              style={{ color: 'var(--accent)' }}
+            >
+              {t(HERO.ctaCv)} ↓
+            </a>
+          </div>
+        </div>
+
+        {/* availability, set on the right margin like a rubber stamp */}
+        <div className="col-span-12 md:col-span-3 md:col-start-10" style={{ marginTop: 24 }}>
+          <div
+            style={{
+              display: 'inline-block',
+              border: '1.5px solid var(--accent)',
+              color: 'var(--accent)',
+              padding: '10px 18px',
+              transform: 'rotate(-2deg)',
+              fontFamily: 'var(--mono)',
+              fontSize: '10px',
+              letterSpacing: '0.24em',
+              textTransform: 'uppercase',
+              marginTop: 6,
+            }}
+          >
+            {t(HERO.stamp)}
+          </div>
+        </div>
+      </motion.div>
     </section>
   )
 }

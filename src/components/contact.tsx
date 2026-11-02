@@ -1,107 +1,271 @@
 import { motion } from 'framer-motion'
+import { useLang } from '../i18n'
+import { CONTACT } from '../content'
+import { SectionLabel } from './About'
+import { MailIcon, PhoneIcon, PdfIcon, GithubIcon, LinkedinIcon } from './Icons'
+
+const ease = [0.22, 1, 0.36, 1] as const
+
+const SOCIALS = [
+  { label: 'GitHub', handle: '@Mehdiamellah', href: 'https://github.com/Mehdiamellah', Icon: GithubIcon },
+  { label: 'LinkedIn', handle: 'Amellah Elmahdi', href: 'https://www.linkedin.com/in/amellah-elmahdi-424919329/', Icon: LinkedinIcon },
+]
 
 export function Contact() {
+  const { lang } = useLang()
+  const fr = lang === 'fr'
+
   return (
     <section
       id="contact"
-      style={{ borderTop: '1px solid #1f1f1f', paddingTop: '96px', paddingBottom: '120px' }}
       className="max-w-screen-xl mx-auto px-8"
+      style={{ paddingTop: '120px', paddingBottom: '130px' }}
     >
+      <motion.div
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.6, ease }}
+        style={{
+          borderTop: '1px solid var(--hairline-strong)',
+          paddingTop: 16,
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'baseline',
+          marginBottom: '48px',
+        }}
+      >
+        <SectionLabel>{fr ? CONTACT.label.fr : CONTACT.label.en}</SectionLabel>
+        <span className="plate hidden md:inline">{fr ? CONTACT.side.fr : CONTACT.side.en}</span>
+      </motion.div>
+
       <div className="grid grid-cols-12 gap-x-8">
-        <motion.div
-          className="col-span-12 md:col-span-2"
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.35, ease: 'easeOut' }}
-        >
-          <span
+        <div className="col-span-12 md:col-span-8">
+          <motion.h2
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.75, ease, delay: 0.08 }}
             style={{
-              fontFamily: "'Geist Mono', monospace",
-              fontSize: '11px',
-              color: '#6b7280',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              display: 'block',
-              paddingTop: '6px',
+              fontSize: 'clamp(44px, 7vw, 94px)',
+              lineHeight: 1.02,
+              margin: '0 0 32px 0',
+              fontWeight: 400,
             }}
           >
-            Contact
-          </span>
-        </motion.div>
+            {fr ? CONTACT.heading.fr : CONTACT.heading.en},{' '}
+            <span className="serif-italic" style={{ color: 'var(--accent)' }}>
+              {fr ? CONTACT.headingItalic.fr : CONTACT.headingItalic.en}
+            </span>
+          </motion.h2>
 
-        <motion.div
-          className="col-span-12 md:col-span-7 mt-8 md:mt-0"
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.35, ease: 'easeOut', delay: 0.07 }}
-        >
-          <h2
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6, ease, delay: 0.16 }}
             style={{
-              fontFamily: "'Geist', sans-serif",
-              fontSize: 'clamp(28px, 4vw, 48px)',
-              fontWeight: 500,
-              color: '#ededed',
-              lineHeight: 1.1,
-              letterSpacing: '-0.02em',
-              marginBottom: '32px',
+              fontSize: '15.5px',
+              color: 'var(--ink-soft)',
+              lineHeight: 1.8,
+              maxWidth: 460,
             }}
           >
-            Let's talk.
-          </h2>
+            {fr ? CONTACT.para.fr : CONTACT.para.en}
+          </motion.p>
+        </div>
+      </div>
 
+      {/* the channels, set like an index plate */}
+      <div className="col-span-12 md:col-span-10 md:col-start-2" style={{ marginTop: '52px' }}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.7, ease, delay: 0.2 }}
+          style={{ borderTop: '1px solid var(--hairline-strong)' }}
+        >
+          {/* email */}
           <a
-            href="mailto:amellahmehdiog@gmail.com"
+            href={`mailto:${CONTACT.email}`}
+            className="ink-row"
             style={{
-              fontFamily: "'Geist Mono', monospace",
-              fontSize: '16px',
-              color: '#4ade80',
-              borderBottom: '1px solid #4ade80',
-              paddingBottom: '2px',
-              display: 'inline-block',
-              transition: 'opacity 0.2s ease',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: 12,
+              padding: '26px 20px 26px 0',
+              borderBottom: '1px solid var(--hairline)',
             }}
-            onMouseEnter={(e) => { (e.target as HTMLAnchorElement).style.opacity = '0.65' }}
-            onMouseLeave={(e) => { (e.target as HTMLAnchorElement).style.opacity = '1' }}
           >
-            amellahmehdiog@gmail.com
-          </a>
-
-          <div style={{ display: 'flex', gap: '32px', marginTop: '20px' }}>
-            {[
-              { label: 'GitHub', href: 'https://github.com/Mehdiamellah' },
-              { label: 'LinkedIn', href: 'https://www.linkedin.com/in/amellah-elmahdi-424919329/' },
-            ].map(({ label, href }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
+            <span style={{ display: 'flex', alignItems: 'center', gap: 16, minWidth: 0 }}>
+              <span
+                className="flip"
+                style={{ color: 'var(--accent)', display: 'inline-flex', flexShrink: 0 }}
+              >
+                <MailIcon size={20} />
+              </span>
+              <span
+                className="flip"
                 style={{
-                  fontFamily: "'Geist Mono', monospace",
-                  fontSize: '13px',
-                  color: '#4ade80',
-                  textDecoration: 'none',
-                  borderBottom: '1px solid transparent',
-                  paddingBottom: '1px',
-                  transition: 'border-color 0.2s ease, opacity 0.2s ease',
-                }}
-                onMouseEnter={(e) => {
-                  const el = e.target as HTMLAnchorElement
-                  el.style.borderBottomColor = '#4ade80'
-                  el.style.opacity = '0.8'
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.target as HTMLAnchorElement
-                  el.style.borderBottomColor = 'transparent'
-                  el.style.opacity = '1'
+                  fontFamily: 'var(--serif)',
+                  fontSize: 'clamp(20px, 3.2vw, 38px)',
+                  color: 'var(--ink)',
                 }}
               >
-                {label}
-              </a>
-            ))}
-          </div>
+                {CONTACT.email}
+              </span>
+            </span>
+            <span
+              className="plate flip"
+              style={{
+                fontSize: '10px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 10,
+              }}
+            >
+              {fr ? CONTACT.byMail.fr : CONTACT.byMail.en}
+              <span className="flip-arrow" style={{ fontSize: 16 }}>→</span>
+            </span>
+          </a>
+
+          {/* phone */}
+          <a
+            href={CONTACT.phoneHref}
+            className="ink-row"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: 12,
+              padding: '20px 20px 20px 0',
+              borderBottom: '1px solid var(--hairline)',
+            }}
+          >
+            <span style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+              <span
+                className="flip"
+                style={{ color: 'var(--accent)', display: 'inline-flex', flexShrink: 0 }}
+              >
+                <PhoneIcon size={18} />
+              </span>
+              <span
+                className="flip"
+                style={{
+                  fontFamily: 'var(--sans)',
+                  fontSize: '16px',
+                  fontWeight: 500,
+                  color: 'var(--ink)',
+                }}
+              >
+                {CONTACT.phone}
+              </span>
+            </span>
+            <span
+              className="plate flip"
+              style={{ fontSize: '10px', display: 'inline-flex', alignItems: 'center', gap: 10 }}
+            >
+              {fr ? CONTACT.byPhone.fr : CONTACT.byPhone.en}
+              <span className="flip-arrow" style={{ fontSize: 16 }}>→</span>
+            </span>
+          </a>
+
+          {/* CV */}
+          <a
+            href="/cv-amellah-elmahdi.pdf"
+            download="CV-Amellah-Elmahdi.pdf"
+            className="ink-row"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: 12,
+              padding: '20px 20px 20px 0',
+              borderBottom: '1px solid var(--hairline)',
+            }}
+          >
+            <span style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+              <span
+                className="flip"
+                style={{ color: 'var(--accent)', display: 'inline-flex', flexShrink: 0 }}
+              >
+                <PdfIcon size={18} />
+              </span>
+              <span
+                className="flip"
+                style={{
+                  fontFamily: 'var(--sans)',
+                  fontSize: '16px',
+                  fontWeight: 500,
+                  color: 'var(--ink)',
+                }}
+              >
+                CV — Amellah Elmahdi
+              </span>
+            </span>
+            <span
+              className="plate flip"
+              style={{ fontSize: '10px', display: 'inline-flex', alignItems: 'center', gap: 10 }}
+            >
+              {fr ? CONTACT.download.fr : CONTACT.download.en}
+              <span className="flip-arrow" style={{ fontSize: 14 }}>↓</span>
+            </span>
+          </a>
+
+          {/* socials, with real marks */}
+          {SOCIALS.map(({ label, handle, href, Icon }) => (
+            <motion.a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.6, ease, delay: 0.26 }}
+              className="ink-row"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: 12,
+                padding: '20px 20px 20px 0',
+                borderBottom: '1px solid var(--hairline)',
+              }}
+            >
+              <span style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                <span
+                  className="flip"
+                  style={{ color: 'var(--accent)', display: 'inline-flex', flexShrink: 0 }}
+                >
+                  <Icon size={18} />
+                </span>
+                <span
+                  className="flip"
+                  style={{
+                    fontFamily: 'var(--sans)',
+                    fontSize: '16px',
+                    fontWeight: 500,
+                    color: 'var(--ink)',
+                  }}
+                >
+                  {label}
+                </span>
+              </span>
+              <span
+                className="plate flip-dim"
+                style={{ fontSize: '11px' }}
+              >
+                {handle}
+                <span className="flip-arrow" style={{ marginLeft: 10 }}>↗</span>
+              </span>
+            </motion.a>
+          ))}
         </motion.div>
       </div>
     </section>

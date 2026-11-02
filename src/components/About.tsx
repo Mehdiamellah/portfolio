@@ -1,60 +1,150 @@
 import { motion } from 'framer-motion'
+import type { ReactNode } from 'react'
+import { useLang } from '../i18n'
+import { ABOUT, STATS } from '../content'
+
+const ease = [0.22, 1, 0.36, 1] as const
+
+function SectionLabel({ children }: { children: ReactNode }) {
+  return (
+    <span className="plate" style={{ display: 'inline-flex', alignItems: 'center', gap: 12 }}>
+      {children}
+      <span style={{ width: 40, height: 1, backgroundColor: 'var(--hairline-strong)', display: 'inline-block' }} />
+    </span>
+  )
+}
 
 export function About() {
+  const { lang } = useLang()
+  const fr = lang === 'fr'
+
   return (
     <section
       id="about"
-      style={{ borderTop: '1px solid #1f1f1f', paddingTop: '96px', paddingBottom: '96px' }}
       className="max-w-screen-xl mx-auto px-8"
+      style={{ paddingTop: '110px', paddingBottom: '110px' }}
     >
-      {/* 12-col asymmetric: label left col, text right spans 7 cols */}
-      <div className="grid grid-cols-12 gap-x-8">
-        <motion.div
-          className="col-span-12 md:col-span-2"
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.35, ease: 'easeOut' }}
-        >
-          <span
-            style={{
-              fontFamily: "'Geist Mono', monospace",
-              fontSize: '11px',
-              color: '#6b7280',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              display: 'block',
-              paddingTop: '6px',
-            }}
-          >
-            About
-          </span>
-        </motion.div>
+      {/* section header */}
+      <motion.div
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.6, ease }}
+        className="rule"
+        style={{
+          borderTop: '1px solid var(--hairline-strong)',
+          paddingTop: 16,
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'baseline',
+          marginBottom: '48px',
+        }}
+      >
+        <SectionLabel>{fr ? ABOUT.label.fr : ABOUT.label.en}</SectionLabel>
+        <span className="plate hidden md:inline">{fr ? ABOUT.side.fr : ABOUT.side.en}</span>
+      </motion.div>
 
-        <motion.div
-          className="col-span-12 md:col-span-7 mt-8 md:mt-0"
-          initial={{ opacity: 0, y: 12 }}
+      <div className="grid grid-cols-12 gap-x-8">
+        <motion.h2
+          className="col-span-12 md:col-span-7"
+          initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.35, ease: 'easeOut', delay: 0.07 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.7, ease, delay: 0.08 }}
+          style={{
+            fontSize: 'clamp(34px, 4.6vw, 58px)',
+            lineHeight: 1.14,
+            margin: '0 0 44px 0',
+            fontWeight: 400,
+          }}
         >
-          <p
-            style={{
-              fontFamily: "'Geist', sans-serif",
-              fontSize: '18px',
-              color: '#ededed',
-              lineHeight: 1.75,
-              margin: 0,
-            }}
+          {fr ? ABOUT.heading.fr : ABOUT.heading.en}
+          <br />
+          <span className="serif-italic" style={{ color: 'var(--accent)' }}>
+            {fr ? ABOUT.headingItalic.fr : ABOUT.headingItalic.en}
+          </span>
+          .
+        </motion.h2>
+      </div>
+
+      <div className="grid grid-cols-12 gap-x-8">
+        <div className="col-span-12 md:col-span-4">
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6, ease, delay: 0.14 }}
+            style={{ fontSize: '16px', color: 'var(--ink-soft)', lineHeight: 1.85, margin: 0 }}
           >
-            I'm a Telecommunications and Networks Engineering student at ENSA Safi, Morocco.
-            My path toward Cloud Engineering isn't a pivot — it's a logical evolution.
-            I understand networks at the infrastructure level, and I'm applying that to modern Cloud environments.
-            I build things to understand them. I'm honest about what I don't know yet, and I move fast when I decide to learn something.
-            Currently looking for a first professional experience in Casablanca — Nearshore or CFC.
-          </p>
-        </motion.div>
+            {fr ? ABOUT.para1.fr : ABOUT.para1.en}
+          </motion.p>
+        </div>
+        <div className="col-span-12 md:col-span-4" style={{ marginTop: 24 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6, ease, delay: 0.22 }}
+          >
+            <p style={{ fontSize: '16px', color: 'var(--ink-soft)', lineHeight: 1.85, margin: 0 }}>
+              {fr ? ABOUT.para2.fr : ABOUT.para2.en}
+            </p>
+            <p
+              className="plate"
+              style={{
+                fontSize: '10px',
+                letterSpacing: '0.18em',
+                marginTop: '20px',
+                lineHeight: 2,
+                maxWidth: 380,
+              }}
+            >
+              {fr ? ABOUT.languages.fr : ABOUT.languages.en}
+            </p>
+          </motion.div>
+        </div>
+
+        {/* data table */}
+        <div className="col-span-12 md:col-span-4" style={{ marginTop: 24 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6, ease, delay: 0.28 }}
+            style={{ borderTop: '1px solid var(--hairline-strong)' }}
+          >
+            {STATS.map((stat, i) => (
+              <div
+                key={stat.n}
+                style={{
+                  display: 'flex',
+                  alignItems: 'baseline',
+                  gap: 16,
+                  padding: '14px 0',
+                  borderBottom: i < STATS.length - 1 ? '1px solid var(--hairline)' : undefined,
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: 'var(--serif)',
+                    fontSize: '30px',
+                    color: 'var(--ink)',
+                    minWidth: 56,
+                    lineHeight: 1,
+                  }}
+                >
+                  {stat.n}
+                </span>
+                <span style={{ fontSize: '12.5px', color: 'var(--ink-muted)', lineHeight: 1.55 }}>
+                  {fr ? stat.label.fr : stat.label.en}
+                </span>
+              </div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   )
 }
+
+export { SectionLabel }

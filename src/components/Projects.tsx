@@ -1,267 +1,155 @@
 import { motion } from 'framer-motion'
+import { useLang } from '../i18n'
+import { PROJECTS } from '../content'
+import { SectionLabel } from './About'
 
-interface Project {
-  title: string
-  stack: string[]
-  description: string
-  link?: string
-  linkLabel?: string
-  note?: string
-}
+const ease = [0.22, 1, 0.36, 1] as const
 
-const PROJECTS: Project[] = [
-  {
-    title: 'MediChain — Medical Blockchain Verification App',
-    stack: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Docker', 'CI/CD'],
-    description:
-      'Designed and managed a fullstack app (code generated with AI assistance) that verifies medical-document integrity via SHA-256 hashing and RSA signatures, keeping sensitive data off-chain. Dockerized backend, GitHub Actions CI/CD, deployed on Vercel + Render.',
-    link: 'https://medichain-pi.vercel.app',
-    linkLabel: 'Live site',
-  },
-  {
-    title: 'Scrutis — File & URL Scanning SaaS',
-    stack: ['Terraform', 'AWS', 'Proxmox VE', 'K3s', 'Tailscale'],
-    description:
-      'End-of-studies project: a scanning platform (ClamAV, YARA, Google Safe Browsing, PhishTank). Designed and compared two infrastructure approaches — AWS (VPC, RDS, S3, SQS, EC2 + K3s, Terraform IaC) and Proxmox VE + Tailscale + K3s, the one deployed and running in production.',
-    note: 'Report available on request',
-  },
-  {
-    title: 'SQLI — Dockerized Internship Platform (DevOps pipeline)',
-    stack: ['Docker', 'Docker Compose', 'Docker Hub', 'PHP', 'MySQL'],
-    description:
-      'Built and containerized a PHP/MySQL internship-application platform end-to-end: local dev, Dockerfile + Docker Compose orchestration (app, DB, phpMyAdmin), image published to Docker Hub, deployed to a Kali Linux VM.',
-    link: 'https://github.com/Mehdiamellah/Internhub',
-    linkLabel: 'View on GitHub',
-  },
-  {
-    title: 'Wazuh SOC Labs — Detection & Monitoring',
-    stack: ['Wazuh', 'SIEM', 'Kali Linux', 'Hydra'],
-    description:
-      'Built SOC labs simulating and detecting attacks with Wazuh: SSH brute-force (Hydra from Kali against a monitored agent) and ransomware behavior on both Windows and Ubuntu victims, using File Integrity Monitoring and analyzing the triggered detection rules.',
-    link: 'https://www.linkedin.com/feed/update/urn:li:activity:7437666442247909377/',
-    linkLabel: 'LinkedIn post',
-  },
-  {
-    title: 'Multi-Site Network Infrastructure (Packet Tracer)',
-    stack: ['Cisco IOS', 'OSPF', 'VLSM', 'DHCP/DNS', 'NAT/ACL'],
-    description:
-      '5-site enterprise network (HQ + 2 agencies + cloud datacenter + new agency) fully simulated in Packet Tracer: VLSM addressing, VLAN segmentation, OSPF dynamic routing, centralized DHCP, DNS, NAT/PAT, SSH administration, and Zero Trust ACLs between departments.',
-    note: 'Report available on request',
-  },
-  {
-    title: 'Kativa — Cosmetics E-commerce Deployment',
-    stack: ['React', 'Node.js', 'PostgreSQL', 'Docker', 'AWS EC2', 'Nginx'],
-    description:
-      'Deployed a React/Vite + Node.js/Express/Prisma + PostgreSQL stack to AWS EC2, containerized with Docker across separate frontend, backend, and Nginx reverse-proxy services.',
-    link: 'http://34.231.137.194/',
-    linkLabel: 'Live site',
-  },
-  {
-    title: 'EthicalData — Coaching Platform Deployment',
-    stack: ['NestJS', 'Next.js', 'Docker', 'Oracle Cloud'],
-    description:
-      'Deployed a NestJS + Next.js monorepo to an Oracle Cloud Ubuntu VM; diagnosed and fixed a broken Docker build pipeline.',
-    link: 'https://ethicaldatasecurity.ma/',
-    linkLabel: 'Live site',
-  },
-  {
-    title: 'Cloud Infrastructure with Terraform',
-    stack: ['Terraform', 'AWS', 'Azure'],
-    description:
-      'Designed and deployed cloud infrastructure as code. Focused on modularity and reusability of Terraform configurations.',
-    link: 'https://github.com/Mehdiamellah/IoT-project',
-    linkLabel: 'View on GitHub',
-  },
-  {
-    title: 'Attack Detection Platform',
-    stack: ['Python', 'Streamlit', 'Machine Learning'],
-    description:
-      'Built a platform that analyzes network traffic data and classifies attack types using a trained ML model. Frontend built with Streamlit.',
-    link: 'https://github.com/Mehdiamellah/Cybershield',
-    linkLabel: 'View on GitHub',
-  },
-  {
-    title: 'FTTH Network Infrastructure',
-    stack: ['OptiSystem', 'Phi-OTDR'],
-    description:
-      'Simulated a full fiber optic FTTH network, introduced a jamming attack, and visualized anomalies using Phi-OTDR analysis.',
-    link: 'https://github.com/Mehdiamellah/Projet_Phi_Otdr',
-    linkLabel: 'View on GitHub',
-  },
-]
+function ProjectRow({ project, index, total }: { project: (typeof PROJECTS.items)[number]; index: number; total: number }) {
+  const { lang } = useLang()
+  const fr = lang === 'fr'
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const linkLabel =
+    project.linkKey === 'viewSite' ? PROJECTS.viewSite : project.linkKey === 'viewGithub' ? PROJECTS.viewGithub : PROJECTS.linkedin
+
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 12 }}
+    <motion.a
+      initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.35, ease: 'easeOut', delay: index * 0.06 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.55, ease, delay: Math.min(index * 0.05, 0.25) }}
+      href={project.link ?? 'mailto:amellahmehdiog@gmail.com'}
+      target={project.link ? '_blank' : undefined}
+      rel={project.link ? 'noopener noreferrer' : undefined}
+      className="ink-row"
       style={{
-        borderTop: '1px solid #1f1f1f',
-        paddingTop: '32px',
-        paddingBottom: '32px',
+        display: 'block',
+        position: 'relative',
+        padding: '34px 20px',
+        borderTop: '1px solid var(--hairline)',
+        borderBottom: index === total - 1 ? '1px solid var(--hairline)' : undefined,
+        zIndex: 1,
       }}
     >
-      <div className="grid grid-cols-12 gap-x-8">
-        {/* Index number */}
-        <div className="col-span-12 md:col-span-1">
+      <div className="grid grid-cols-12 gap-x-8 items-baseline" style={{ position: 'relative' }}>
+        <div className="col-span-2 md:col-span-1">
           <span
-            style={{
-              fontFamily: "'Geist Mono', monospace",
-              fontSize: '11px',
-              color: '#6b7280',
-              paddingTop: '4px',
-              display: 'block',
-            }}
+            className="plate flip-dim"
+            style={{ fontSize: '11px' }}
           >
-            {String(index + 1).padStart(2, '0')}
+            N°{String(index + 1).padStart(2, '0')}
           </span>
         </div>
 
-        {/* Content */}
-        <div className="col-span-12 md:col-span-8 mt-4 md:mt-0">
+        <div className="col-span-10 md:col-span-7">
           <h3
+            className="flip"
             style={{
-              fontFamily: "'Geist', sans-serif",
-              fontSize: '20px',
-              fontWeight: 500,
-              color: '#ededed',
-              marginBottom: '12px',
+              fontSize: 'clamp(22px, 2.6vw, 32px)',
+              color: 'var(--ink)',
               lineHeight: 1.2,
+              margin: 0,
+              fontWeight: 400,
             }}
           >
             {project.title}
           </h3>
-
-          {/* Stack tags */}
-          <div className="flex flex-wrap gap-2" style={{ marginBottom: '16px' }}>
-            {project.stack.map((tag) => (
-              <span
-                key={tag}
-                style={{
-                  fontFamily: "'Geist Mono', monospace",
-                  fontSize: '11px',
-                  color: '#4ade80',
-                  border: '1px solid #1f2f1f',
-                  backgroundColor: 'transparent',
-                  padding: '2px 8px',
-                  borderRadius: '2px',
-                  letterSpacing: '0.04em',
-                }}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-
           <p
+            className="flip-dim"
             style={{
-              fontFamily: "'Geist', sans-serif",
-              fontSize: '15px',
-              color: '#6b7280',
-              lineHeight: 1.65,
-              margin: 0,
-              maxWidth: '520px',
+              fontSize: '13.5px',
+              color: 'var(--ink-muted)',
+              lineHeight: 1.7,
+              margin: '12px 0 0 0',
+              maxWidth: '560px',
             }}
           >
-            {project.description}
+            {fr ? project.description.fr : project.description.en}
           </p>
         </div>
 
-        {/* Link column */}
-        <div className="col-span-12 md:col-span-3 flex md:justify-end items-start mt-4 md:mt-0">
-          {project.link ? (
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontFamily: "'Geist Mono', monospace",
-                fontSize: '12px',
-                color: '#4ade80',
-                letterSpacing: '0.05em',
-                borderBottom: '1px solid #4ade80',
-                paddingBottom: '1px',
-                transition: 'opacity 0.2s ease',
-              }}
-              onMouseEnter={(e) => { (e.target as HTMLAnchorElement).style.opacity = '0.65' }}
-              onMouseLeave={(e) => { (e.target as HTMLAnchorElement).style.opacity = '1' }}
-            >
-              {project.linkLabel}
-            </a>
-          ) : project.note ? (
-            <span
-              style={{
-                fontFamily: "'Geist Mono', monospace",
-                fontSize: '12px',
-                color: '#6b7280',
-                letterSpacing: '0.05em',
-              }}
-            >
-              {project.note}
-            </span>
-          ) : null}
+        <div className="col-span-12 md:col-span-3 mt-4 md:mt-0">
+          <p
+            className="plate"
+            style={{
+              letterSpacing: '0.14em',
+              lineHeight: 2.1,
+              margin: 0,
+              color: 'var(--ink-muted)',
+            }}
+          >
+            {project.stack.join(' · ')}
+          </p>
+          <p
+            className="flip"
+            style={{
+              fontFamily: 'var(--mono)',
+              fontSize: '11px',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: 'var(--ink)',
+              margin: '10px 0 0 0',
+            }}
+          >
+            {project.link ? `${fr ? linkLabel.fr : linkLabel.en} ` : project.noteKey === 'note' ? `${fr ? PROJECTS.note.fr : PROJECTS.note.en} ` : ''}
+            <span className="flip-arrow">↗</span>
+          </p>
         </div>
       </div>
-    </motion.article>
+    </motion.a>
   )
 }
 
 export function Projects() {
+  const { lang } = useLang()
+  const fr = lang === 'fr'
+
   return (
     <section
       id="projects"
-      style={{ borderTop: '1px solid #1f1f1f', paddingTop: '96px', paddingBottom: '96px' }}
       className="max-w-screen-xl mx-auto px-8"
+      style={{ paddingTop: '110px', paddingBottom: '110px' }}
     >
-      <div className="grid grid-cols-12 gap-x-8 mb-16">
-        <motion.div
-          className="col-span-12 md:col-span-2"
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.35, ease: 'easeOut' }}
-        >
-          <span
-            style={{
-              fontFamily: "'Geist Mono', monospace",
-              fontSize: '11px',
-              color: '#6b7280',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-            }}
-          >
-            Projects
-          </span>
-        </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.6, ease }}
+        style={{
+          borderTop: '1px solid var(--hairline-strong)',
+          paddingTop: 16,
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'baseline',
+          marginBottom: '38px',
+        }}
+      >
+        <SectionLabel>{fr ? PROJECTS.label.fr : PROJECTS.label.en}</SectionLabel>
+        <span className="plate hidden md:inline">{fr ? PROJECTS.side.fr : PROJECTS.side.en}</span>
+      </motion.div>
 
-        <motion.div
-          className="col-span-12 md:col-span-6 mt-4 md:mt-0"
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.35, ease: 'easeOut', delay: 0.07 }}
-        >
-          <h2
-            style={{
-              fontFamily: "'Geist', sans-serif",
-              fontSize: 'clamp(28px, 4vw, 40px)',
-              fontWeight: 500,
-              color: '#ededed',
-              lineHeight: 1.1,
-              letterSpacing: '-0.02em',
-              margin: 0,
-            }}
-          >
-            Things I've built
-          </h2>
-        </motion.div>
-      </div>
+      <motion.h2
+        initial={{ opacity: 0, y: 22 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.7, ease, delay: 0.08 }}
+        style={{
+          fontSize: 'clamp(34px, 4.6vw, 58px)',
+          lineHeight: 1.14,
+          margin: '0 0 64px 0',
+          fontWeight: 400,
+        }}
+      >
+        {fr ? PROJECTS.heading.fr : PROJECTS.heading.en},{' '}
+        <span className="serif-italic" style={{ color: 'var(--accent)' }}>
+          {fr ? PROJECTS.headingItalic.fr : PROJECTS.headingItalic.en}
+        </span>
+        .
+      </motion.h2>
 
       <div>
-        {PROJECTS.map((project, i) => (
-          <ProjectCard key={project.title} project={project} index={i} />
+        {PROJECTS.items.map((project, i) => (
+          <ProjectRow key={project.title} project={project} index={i} total={PROJECTS.items.length} />
         ))}
       </div>
     </section>
