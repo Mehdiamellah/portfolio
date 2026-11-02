@@ -11,7 +11,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      style={{ paddingTop: '170px', paddingBottom: '90px' }}
+      style={{ paddingTop: '104px', paddingBottom: '64px' }}
       className="max-w-screen-xl mx-auto px-8"
     >
       {/* masthead row — metadata, like a title page */}
