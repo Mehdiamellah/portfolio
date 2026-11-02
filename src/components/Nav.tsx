@@ -1,8 +1,15 @@
 import { useScroll, useSpring, motion } from 'framer-motion'
 import { useLang } from '../i18n'
 import { NAV } from '../content'
+import { MoonIcon, SunIcon } from './Icons'
+import type { Theme } from '../App'
 
-export function Nav() {
+interface NavProps {
+  theme: Theme
+  onToggleTheme: () => void
+}
+
+export function Nav({ theme, onToggleTheme }: NavProps) {
   const { lang, setLang } = useLang()
   const { scrollYProgress } = useScroll()
   const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 34 })
@@ -64,6 +71,36 @@ export function Nav() {
               {lang === 'fr' ? link.label.fr : link.label.en}
             </a>
           ))}
+
+          {/* theme toggle — lune/soleil, même gabarit frugal que la langue */}
+          <button
+            onClick={onToggleTheme}
+            aria-label={lang === 'fr' ? (theme === 'noir' ? 'Passer en mode clair' : 'Passer en mode sombre') : (theme === 'noir' ? 'Switch to light mode' : 'Switch to dark mode')}
+            aria-pressed={theme === 'ivory'}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: 30,
+              height: 26,
+              border: '1px solid var(--hairline)',
+              borderRadius: 999,
+              background: 'transparent',
+              color: 'var(--ink-muted)',
+              cursor: 'pointer',
+              transition: 'color 0.25s ease, border-color 0.25s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = 'var(--ink)'
+              e.currentTarget.style.borderColor = 'var(--hairline-strong)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = 'var(--ink-muted)'
+              e.currentTarget.style.borderColor = 'var(--hairline)'
+            }}
+          >
+            {theme === 'noir' ? <SunIcon size={13} /> : <MoonIcon size={13} />}
+          </button>
 
           {/* language toggle — discreet mono pill pair */}
           <div
