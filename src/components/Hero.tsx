@@ -97,7 +97,7 @@ export function Hero() {
           >
             <div style={{ position: 'relative' }}>
               <img
-                src="/protfolioimg.png"
+                src={`${import.meta.env.BASE_URL}protfolioimg.png`}
                 alt="Portrait de Amellah Elmahdi"
                 width={285}
                 height={380}

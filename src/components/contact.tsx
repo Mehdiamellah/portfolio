@@ -175,7 +175,7 @@ export function Contact() {
 
           {/* CV */}
           <a
-            href="/cv-amellah-elmahdi.pdf"
+            href={`${import.meta.env.BASE_URL}cv-amellah-elmahdi.pdf`}
             download="CV-Amellah-Elmahdi.pdf"
             className="ink-row"
             style={{
