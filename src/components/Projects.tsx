@@ -108,7 +108,7 @@ export function Projects() {
     <section
       id="projects"
       className="max-w-screen-xl mx-auto px-8"
-      style={{ paddingTop: '110px', paddingBottom: '110px' }}
+      style={{ paddingTop: 'clamp(64px, 9vw, 110px)', paddingBottom: 'clamp(64px, 9vw, 110px)' }}
     >
       <motion.div
         initial={{ opacity: 0, y: 18 }}

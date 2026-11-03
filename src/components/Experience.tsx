@@ -13,7 +13,7 @@ export function Experience() {
     <section
       id="experience"
       className="max-w-screen-xl mx-auto px-8"
-      style={{ paddingTop: '110px', paddingBottom: '110px' }}
+      style={{ paddingTop: 'clamp(64px, 9vw, 110px)', paddingBottom: 'clamp(64px, 9vw, 110px)' }}
     >
       <motion.div
         initial={{ opacity: 0, y: 18 }}
@@ -64,14 +64,11 @@ export function Experience() {
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.5, ease, delay: Math.min(i * 0.07, 0.3) }}
               style={{
-                display: 'grid',
-                gridTemplateColumns: '88px 1fr auto',
-                gap: 24,
-                alignItems: 'baseline',
                 padding: '26px 0',
                 borderBottom: '1px solid var(--hairline)',
                 borderTop: i === 0 ? '1px solid var(--hairline)' : undefined,
               }}
+              className="grid grid-cols-[72px_1fr] gap-x-4 items-baseline md:grid-cols-[88px_1fr_auto] md:gap-x-6"
             >
               {/* year, serif, quietly large */}
               <span

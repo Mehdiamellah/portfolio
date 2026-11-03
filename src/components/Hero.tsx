@@ -71,19 +71,14 @@ export function Hero() {
           Elmahdi
         </motion.h1>
 
-        {/* photo — pressed into the page like an editorial portrait */}
+        {/* photo — pressed into the page like an editorial portrait.
+            absolute en desktop (à droite du nom), en flux centré sous le nom en mobile */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease, delay: 0.5 }}
-          className="hidden md:block"
-          style={{
-            position: 'absolute',
-            right: 0,
-            top: 8,
-            width: 'clamp(180px, 22vw, 285px)',
-            zIndex: 2,
-          }}
+          className="mt-10 md:mt-0 mx-auto md:mx-0 md:absolute md:right-0 md:top-2 w-[min(62vw,285px)] md:w-[clamp(180px,22vw,285px)]"
+          style={{ zIndex: 2 }}
         >
           <div
             className="drift"
@@ -164,7 +159,7 @@ export function Hero() {
             }}
           >
             <em className="serif-italic">{lang === 'fr' ? 'réseaux et télécommunications' : 'telecommunications engineering'}</em> —{' '}
-            {lang === 'fr' ? '4ᵉ année à l’ENSA de Safi. Je construis l’infrastructure vers où les réseaux vont' : '4th year at ENSA Safi. Building the infrastructure toward where networks live today'}:{' '}
+            {lang === 'fr' ? '5ᵉ année à l’ENSA de Safi. Je construis l’infrastructure vers où les réseaux vont' : '5th year at ENSA Safi. Building the infrastructure toward where networks live today'}:{' '}
             <em className="serif-italic">{lang === 'fr' ? 'le cloud et la sécurité' : 'cloud and security'}</em>.
           </p>
 
@@ -192,7 +187,7 @@ export function Hero() {
             </a>
             {/* CV — le fichier doit s'appeler /public/cv-amellah-elmahdi.pdf */}
             <a
-              href="/cv-amellah-elmahdi.pdf"
+              href={`${import.meta.env.BASE_URL}cv-amellah-elmahdi.pdf`}
               download="CV-Amellah-Elmahdi.pdf"
               className="plate draw-line"
               style={{ color: 'var(--accent)' }}
@@ -203,7 +198,7 @@ export function Hero() {
         </div>
 
         {/* availability, set on the right margin like a rubber stamp */}
-        <div className="col-span-12 md:col-span-3 md:col-start-10" style={{ marginTop: 24 }}>
+        <div className="col-span-12 mt-6 md:col-span-3 md:col-start-10 md:mt-40">
           <div
             style={{
               display: 'inline-block',

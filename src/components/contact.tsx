@@ -19,7 +19,7 @@ export function Contact() {
     <section
       id="contact"
       className="max-w-screen-xl mx-auto px-8"
-      style={{ paddingTop: '120px', paddingBottom: '130px' }}
+      style={{ paddingTop: 'clamp(72px, 10vw, 120px)', paddingBottom: 'clamp(80px, 11vw, 130px)' }}
     >
       <motion.div
         initial={{ opacity: 0, y: 18 }}
