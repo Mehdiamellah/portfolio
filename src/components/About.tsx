@@ -45,72 +45,46 @@ export function About() {
       </motion.div>
 
       <div className="grid grid-cols-12 gap-x-8">
-        <motion.h2
-          className="col-span-12 md:col-span-7"
-          initial={{ opacity: 0, y: 22 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.7, ease, delay: 0.08 }}
-          style={{
-            fontSize: 'clamp(34px, 4.6vw, 58px)',
-            lineHeight: 1.14,
-            margin: '0 0 28px 0',
-            fontWeight: 400,
-          }}
-        >
-          {fr ? ABOUT.heading.fr : ABOUT.heading.en}
-          <br />
-          <span className="serif-italic" style={{ color: 'var(--accent)' }}>
-            {fr ? ABOUT.headingItalic.fr : ABOUT.headingItalic.en}
-          </span>
-          .
-        </motion.h2>
-      </div>
-
-      <div className="grid grid-cols-12 gap-x-8">
-        <div className="col-span-12 md:col-span-4">
+        {/* la fiche — un seul paragraphe dense, jamais paraphrasé */}
+        <div className="col-span-12 md:col-span-6">
           <motion.p
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6, ease, delay: 0.14 }}
-            style={{ fontSize: '16px', color: 'var(--ink-soft)', lineHeight: 1.85, margin: 0 }}
+            transition={{ duration: 0.6, ease }}
+            style={{ fontSize: '17.5px', color: 'var(--ink-soft)', lineHeight: 1.9, margin: 0 }}
           >
-            {fr ? ABOUT.para1.fr : ABOUT.para1.en}
+            {fr ? ABOUT.para.fr : ABOUT.para.en}
           </motion.p>
-        </div>
-        <div className="col-span-12 md:col-span-4" style={{ marginTop: 24 }}>
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6, ease, delay: 0.22 }}
+            transition={{ duration: 0.5, ease, delay: 0.14 }}
           >
-            <p style={{ fontSize: '16px', color: 'var(--ink-soft)', lineHeight: 1.85, margin: 0 }}>
-              {fr ? ABOUT.para2.fr : ABOUT.para2.en}
-            </p>
-            <p
+            <span
               className="plate"
               style={{
                 fontSize: '10px',
                 letterSpacing: '0.18em',
-                marginTop: '20px',
+                display: 'inline-block',
+                marginTop: '24px',
                 lineHeight: 2,
                 maxWidth: 380,
               }}
             >
               {fr ? ABOUT.languages.fr : ABOUT.languages.en}
-            </p>
-          </motion.div>
+            </span>
+          </motion.p>
         </div>
 
         {/* data table */}
-        <div className="col-span-12 md:col-span-4" style={{ marginTop: 24 }}>
+        <div className="col-span-12 md:col-span-4 md:col-start-9" style={{ marginTop: 24 }}>
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6, ease, delay: 0.28 }}
+            transition={{ duration: 0.6, ease, delay: 0.2 }}
             style={{ borderTop: '1px solid var(--hairline-strong)' }}
           >
             {STATS.map((stat, i) => (

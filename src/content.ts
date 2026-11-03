@@ -41,21 +41,9 @@ export const HERO = {
 export const ABOUT = {
   label: { fr: 'N°01 — Profil', en: 'N°01 — Profile' },
   side: { fr: 'Qui je suis', en: 'Who I am' },
-  heading: {
-    fr: 'Des câbles et des paquets',
-    en: 'From wires and packets',
-  },
-  headingItalic: {
-    fr: 'vers les clouds et les clusters',
-    en: 'to clouds and clusters',
-  },
-  para1: {
-    fr: 'Élève ingénieur en 5ᵉ année de Génie Réseaux et Télécommunications à l’ENSA de Safi, au Maroc. Mon chemin vers le Cloud / DevOps n’est pas une reconversion — c’est une évolution logique. Je comprends les réseaux au niveau infrastructure, et j’applique cette connaissance à l’automatisation : AWS, Terraform, Kubernetes (K3s), Docker et Linux.',
-    en: '5th-year Networks & Telecommunications engineering student at ENSA Safi, Morocco. My path to Cloud/DevOps is not a pivot — it is a logical evolution. I understand networks at the infrastructure level, and I apply that knowledge to automation: AWS, Terraform, Kubernetes (K3s), Docker and Linux.',
-  },
-  para2: {
-    fr: 'Deux stages réalisés (DevOps/Cloud, virtualisation), une plateforme d’infrastructure déployée et opérationnelle, et une gouvernante : je construis des choses pour les comprendre. Je suis honnête sur ce que je ne sais pas encore, et je vais vite quand je décide d’apprendre quelque chose. Je recherche un stage de fin d’études (PFE) en Cloud / DevOps à partir de février 2027 — Nearshore, CFC ou grand groupe.',
-    en: 'Two internships completed (DevOps/Cloud, virtualization), one infrastructure platform deployed and operational — and one governing rule: I build things to understand them. I am honest about what I do not know yet, and I move fast once I decide to learn something. Looking for a final-year internship (PFE) in Cloud/DevOps from February 2027 — Nearshore, CFC or large groups.',
+  para: {
+    fr: 'Élève ingénieur en 5ᵉ année Réseaux & Télécommunications à l’ENSA de Safi. Le Cloud / DevOps n’est pas une reconversion : j’applique ma lecture d’infrastructure à l’automatisation — AWS, Terraform, K3s, Docker, Linux. Deux stages, une plateforme déployée ; je construis pour comprendre, et je vais vite quand il faut apprendre. Objectif : PFE Cloud / DevOps à partir de février 2027.',
+    en: '5th-year Networks & Telecommunications engineering student at ENSA Safi. Cloud/DevOps is not a pivot: I apply my infrastructure reading to automation — AWS, Terraform, K3s, Docker, Linux. Two internships, one platform deployed; I build to understand, and I learn fast. Target: a Cloud/DevOps final-year internship (PFE) from February 2027.',
   },
   languages: {
     fr: 'Langues — Français C1 · Anglais C1 · Rigueur · Autonomie · Esprit d’équipe',
