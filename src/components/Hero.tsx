@@ -143,11 +143,11 @@ export function Hero() {
         className="grid grid-cols-12 gap-x-8"
         style={{ marginTop: 'min(4vw, 48px)' }}
       >
-        <div className="hidden md:block md:col-span-2">
-          <span className="plate">{t(HERO.eyebrow)}</span>
-        </div>
-
-        <div className="col-span-12 md:col-span-7" style={{ marginTop: 10 }}>
+        <div className="col-span-12 md:col-span-7 md:col-start-3" style={{ marginTop: 10 }}>
+          {/* eyebrow — pleine largeur, jamais compressé dans une colonne étroite */}
+          <span className="plate" style={{ display: 'inline-block', marginBottom: 18 }}>
+            {t(HERO.eyebrow)}
+          </span>
           <p
             style={{
               fontSize: 'clamp(19px, 2.2vw, 26px)',

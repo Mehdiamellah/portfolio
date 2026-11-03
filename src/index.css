@@ -27,10 +27,10 @@
   --guides-opacity: 0.3;
   --dim-flip: rgba(20, 17, 12, 0.58);
 
-  --serif: 'Instrument Serif', Georgia, serif;
+  --serif: 'Fraunces', Georgia, serif;
   --serif-style: italic;
-  --mono: 'Geist Mono', monospace;
-  --sans: 'Geist', sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'Archivo', sans-serif;
 }
 
 /* 01 — IVOIRE (variante optionnelle : overlay collé via data-theme) */
@@ -76,7 +76,7 @@
   --guides-opacity: 0.2;
   --dim-flip: rgba(246, 246, 243, 0.55);
 
-  --serif: 'Geist', sans-serif;   /* le display devient grotesque */
+  --serif: 'Archivo', sans-serif;   /* le display devient grotesque */
   --serif-style: normal;
 }
 

@@ -266,29 +266,28 @@ export const SKILLS = {
     {
       category: { fr: 'Cloud & Virtualisation', en: 'Cloud & Virtualization' },
       items: [
-        { label: 'AWS (EC2, S3, IAM, VPC, RDS, SQS)', level: 'confident' as const },
-        { label: 'Terraform', level: 'confident' as const },
-        { label: 'Proxmox VE', level: 'confident' as const },
-        { label: 'Oracle Cloud', level: 'confident' as const },
+        { label: 'AWS (EC2, S3, IAM, VPC, RDS, SQS)', level: 'confident' as const, icon: { cdn: 'devicon', file: 'amazonwebservices/amazonwebservices-original.svg', short: 'AWS' } },
+        { label: 'Terraform', level: 'confident' as const, icon: { cdn: 'devicon', file: 'terraform/terraform-original.svg', short: 'Terraform' } },
+        { label: 'Proxmox VE', level: 'confident' as const, icon: { cdn: 'devicon', file: 'proxmox/proxmox-original.svg', short: 'Proxmox VE' } },
+        { label: 'Oracle Cloud', level: 'confident' as const, icon: { cdn: 'devicon', file: 'oracle/oracle-original.svg', short: 'Oracle Cloud' } },
         { label: 'VirtualBox · migration de VM', level: 'confident' as const },
-        { label: 'Azure', level: 'learning' as const },
+        { label: 'Azure', level: 'learning' as const, icon: { cdn: 'devicon', file: 'azure/azure-original.svg', short: 'Azure' } },
       ],
     },
     {
       category: { fr: 'Conteneurs & Orchestration', en: 'Containers & Orchestration' },
       items: [
-        { label: 'Docker', level: 'confident' as const },
-        { label: 'Docker Compose', level: 'confident' as const },
-        { label: 'Docker Hub', level: 'confident' as const },
-        { label: 'Tailscale', level: 'confident' as const },
-        { label: 'Kubernetes (K3s, Minikube)', level: 'confident' as const },
+        { label: 'Docker', level: 'confident' as const, icon: { cdn: 'devicon', file: 'docker/docker-original.svg', short: 'Docker' } },
+        { label: 'Docker Compose', level: 'confident' as const, icon: { cdn: 'devicon', file: 'docker/docker-original.svg', short: 'Compose' } },
+        { label: 'Docker Hub', level: 'confident' as const, icon: { cdn: 'devicon', file: 'docker/docker-original.svg', short: 'Docker Hub' } },
+        { label: 'Tailscale', level: 'confident' as const, icon: { cdn: 'si', slug: 'tailscale', color: 'ECE4D3', short: 'Tailscale' } },
+        { label: 'Kubernetes (K3s, Minikube)', level: 'confident' as const, icon: { cdn: 'devicon', file: 'kubernetes/kubernetes-plain.svg', short: 'Kubernetes' } },
       ],
     },
     {
       category: { fr: 'Sécurité & Monitoring', en: 'Security & Monitoring' },
       items: [
-        { label: 'Wazuh (SIEM, FIM)', level: 'confident' as const },
-        { label: { fr: 'Simulation d’attaques (brute-force, ransomware)', en: 'Attack simulation (brute-force, ransomware)' }, level: 'confident' as const },
+        { label: 'Wazuh (SIEM, FIM)', level: 'confident' as const },        { label: { fr: 'Simulation d’attaques (brute-force, ransomware)', en: 'Attack simulation (brute-force, ransomware)' }, level: 'confident' as const },
         { label: 'ClamAV / YARA', level: 'confident' as const },
         { label: 'Blockchain (SHA-256, RSA)', level: 'confident' as const },
       ],
@@ -296,7 +295,7 @@ export const SKILLS = {
     {
       category: { fr: 'Réseaux', en: 'Networking' },
       items: [
-        { label: 'Cisco (routage, VLAN, OSPF, VLSM)', level: 'confident' as const },
+        { label: 'Cisco (routage, VLAN, OSPF, VLSM)', level: 'confident' as const, icon: { cdn: 'si', slug: 'cisco', color: '1BA0D7', short: 'Cisco' } },
         { label: 'TCP/IP', level: 'confident' as const },
         { label: 'DHCP/DNS', level: 'confident' as const },
         { label: 'NAT/PAT', level: 'confident' as const },
@@ -307,27 +306,27 @@ export const SKILLS = {
     {
       category: { fr: 'Systèmes', en: 'Systems' },
       items: [
-        { label: { fr: 'Administration Linux (RHEL, Ubuntu)', en: 'Linux administration (RHEL, Ubuntu)' }, level: 'confident' as const },
+        { label: { fr: 'Administration Linux (RHEL, Ubuntu)', en: 'Linux administration (RHEL, Ubuntu)' }, level: 'confident' as const, icon: { cdn: 'devicon', file: 'linux/linux-original.svg', short: 'Linux' } },
         { label: 'Utilisateurs, permissions, services réseau', level: 'confident' as const },
       ],
     },
     {
       category: { fr: 'Scripting & Programmation', en: 'Scripting & Programming' },
       items: [
-        { label: 'Python', level: 'confident' as const },
-        { label: 'Bash', level: 'confident' as const },
+        { label: 'Python', level: 'confident' as const, icon: { cdn: 'devicon', file: 'python/python-original.svg', short: 'Python' } },
+        { label: 'Bash', level: 'confident' as const, icon: { cdn: 'devicon', file: 'bash/bash-original.svg', short: 'Bash' } },
         { label: 'SQL', level: 'confident' as const },
-        { label: { fr: 'C (notions)', en: 'C (basics)' }, level: 'learning' as const },
-        { label: 'MATLAB (notions)', level: 'learning' as const },
+        { label: { fr: 'C (notions)', en: 'C (basics)' }, level: 'learning' as const, icon: { cdn: 'devicon', file: 'c/c-original.svg', short: 'C' } },
+        { label: 'MATLAB (notions)', level: 'learning' as const, icon: { cdn: 'devicon', file: 'matlab/matlab-original.svg', short: 'MATLAB' } },
       ],
     },
     {
       category: { fr: 'Outils', en: 'Tooling' },
       items: [
-        { label: 'Git', level: 'confident' as const },
-        { label: 'GitHub Actions (CI/CD)', level: 'confident' as const },
+        { label: 'Git', level: 'confident' as const, icon: { cdn: 'devicon', file: 'git/git-original.svg', short: 'Git' } },
+        { label: 'GitHub Actions (CI/CD)', level: 'confident' as const, icon: { cdn: 'si', slug: 'githubactions', color: '2088FF', short: 'CI/CD' } },
         { label: 'Cisco Packet Tracer', level: 'confident' as const },
-        { label: 'Wireshark', level: 'confident' as const },
+        { label: 'Wireshark', level: 'confident' as const, icon: { cdn: 'si', slug: 'wireshark', color: '1679A7', short: 'Wireshark' } },
       ],
     },
     {

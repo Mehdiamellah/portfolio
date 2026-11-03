@@ -80,78 +80,154 @@ export function Skills() {
         <div className="hidden md:block md:col-span-2" />
 
         <div className="col-span-12 md:col-span-10">
-          {SKILLS.groups.map((group, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.5, ease, delay: Math.min(i * 0.07, 0.3) }}
-              style={{
-                padding: '26px 0',
-                borderBottom: '1px solid var(--hairline)',
-                borderTop: i === 0 ? '1px solid var(--hairline)' : undefined,
-              }}
-            >
-              <span
+          {SKILLS.groups.map((group, i) => {
+            const hasIcon = (item: (typeof group.items)[number]) =>
+              'icon' in item && Boolean((item as { icon?: unknown }).icon)
+            const tiles = group.items.filter(hasIcon)
+            const prose = group.items.filter((item) => !hasIcon(item))
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.5, ease, delay: Math.min(i * 0.07, 0.3) }}
                 style={{
-                  fontFamily: 'var(--mono)',
-                  fontSize: '10px',
-                  letterSpacing: '0.2em',
-                  textTransform: 'uppercase',
-                  color: 'var(--accent)',
+                  padding: '26px 0',
+                  borderBottom: '1px solid var(--hairline)',
+                  borderTop: i === 0 ? '1px solid var(--hairline)' : undefined,
                 }}
               >
-                {fr ? group.category.fr : group.category.en}
-              </span>
-              <p
-                style={{
-                  fontFamily: 'var(--serif)',
-                  fontSize: 'clamp(18px, 2vw, 24px)',
-                  color: 'var(--ink)',
-                  lineHeight: 1.8,
-                  margin: '10px 0 0 0',
-                  maxWidth: '660px',
-                }}
-              >
-                {group.items.map((item, j) => {
-                  const link = 'url' in item ? (item as { url: string }).url : undefined
-                  return (
-                    <span key={j}>
-                    <span
-                      aria-label={item.level === 'confident' ? 'confident' : 'learning'}
-                      title={item.level === 'confident' ? (fr ? 'à l’aise' : 'confident') : (fr ? 'en cours d’apprentissage' : 'learning')}
-                      style={{
-                        color: item.level === 'confident' ? 'var(--accent)' : 'var(--hairline-strong)',
-                        marginRight: 6,
-                        fontSize: '0.72em',
-                        verticalAlign: '0.1em',
-                      }}
-                    >
-                      {item.level === 'confident' ? '●' : '○'}
-                    </span>
-                    {link ? (
-                      <a
-                        href={link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="draw-line serif-italic"
-                        style={{ color: 'var(--ink)' }}
-                      >
-                        {itemLabel(item.label)}
-                      </a>
-                    ) : (
-                      itemLabel(item.label)
-                    )}
-                    {j < group.items.length - 1 && (
-                      <span style={{ color: 'var(--ink-muted)', padding: '0 12px' }}>&middot;</span>
-                    )}
-                  </span>
-                  )
-                })}
-              </p>
-            </motion.div>
-          ))}
+                <span
+                  style={{
+                    fontFamily: 'var(--mono)',
+                    fontSize: '10px',
+                    letterSpacing: '0.2em',
+                    textTransform: 'uppercase',
+                    color: 'var(--accent)',
+                  }}
+                >
+                  {fr ? group.category.fr : group.category.en}
+                </span>
+
+                {/* les technologies avec logo officiel — tuiles, graduation par opacité */}
+                {tiles.length > 0 && (
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexWrap: 'wrap',
+                      gap: 10,
+                      marginTop: 16,
+                    }}
+                  >
+                    {tiles.map((item) => {
+                      const spec = (item as {
+                        icon?: { cdn: 'devicon' | 'si'; file?: string; slug?: string; color?: string; short: string }
+                      }).icon!
+                      const src =
+                        spec.cdn === 'devicon'
+                          ? `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${spec.file}`
+                          : `https://cdn.simpleicons.org/${spec.slug}${spec.color ? `/${spec.color}` : ''}`
+                      const learning = item.level === 'learning'
+                      return (
+                        <div
+                          key={spec.short}
+                          className="tile"
+                          title={itemLabel(item.label)}
+                          aria-label={`${itemLabel(item.label)}${fr ? (learning ? ' — en cours' : ' — à l’aise') : learning ? ' — learning' : ' — confident'}`}
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            flex: '0 0 auto',
+                            minWidth: 96,
+                            padding: '14px 12px 12px',
+                            border: '1px solid var(--hairline)',
+                            backgroundColor: 'var(--paper-soft)',
+                          }}
+                        >
+                          <img
+                            src={src}
+                            alt=""
+                            width={34}
+                            height={34}
+                            style={{
+                              height: 32,
+                              maxWidth: 58,
+                              objectFit: 'contain',
+                              display: 'block',
+                              filter: learning ? 'grayscale(1)' : undefined,
+                              opacity: learning ? 0.45 : 1,
+                            }}
+                          />
+                          <span
+                            aria-hidden="true"
+                            style={{
+                              fontFamily: 'var(--mono)',
+                              fontSize: '9.5px',
+                              letterSpacing: '0.12em',
+                              textTransform: 'uppercase',
+                              color: learning ? 'var(--ink-muted)' : 'var(--ink-soft)',
+                              marginTop: 9,
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            {spec.short}
+                          </span>
+                        </div>
+                      )
+                    })}
+                  </div>
+                )}
+
+                {/* les savoirs sans logo (concepts réseaux, certifications…) — rangées texte */}
+                {prose.length > 0 && (
+                  <div style={{ marginTop: tiles.length > 0 ? 14 : 0 }}>
+                    {prose.map((item, j) => {
+                      const link = 'url' in item ? (item as { url: string }).url : undefined
+                      return (
+                        <p
+                          key={j}
+                          style={{
+                            fontSize: '13.5px',
+                            color: 'var(--ink-soft)',
+                            lineHeight: 1.75,
+                            margin: '6px 0 0 0',
+                          }}
+                        >
+                          <span
+                            aria-label={item.level === 'confident' ? 'confident' : 'learning'}
+                            title={item.level === 'confident' ? (fr ? 'à l’aise' : 'confident') : (fr ? 'en cours d’apprentissage' : 'learning')}
+                            style={{
+                              color: item.level === 'confident' ? 'var(--accent)' : 'var(--hairline-strong)',
+                              marginRight: 10,
+                              verticalAlign: '0.08em',
+                            }}
+                          >
+                            {item.level === 'confident' ? '●' : '○'}
+                          </span>
+                          {link ? (
+                            <a
+                              href={link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="draw-line serif-italic"
+                              style={{ color: 'var(--ink)', fontFamily: 'var(--serif)', fontSize: '16px' }}
+                            >
+                              {itemLabel(item.label)}
+                            </a>
+                          ) : (
+                            itemLabel(item.label)
+                          )}
+                        </p>
+                      )
+                    })}
+                  </div>
+                )}
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>
